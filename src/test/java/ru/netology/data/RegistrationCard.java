@@ -1,4 +1,4 @@
-package ru.netology;
+package ru.netology.data;
 
 
 import lombok.Data;
@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class RegistrationCard {
     private final String city;
-    private final LocalDate meetingDate;
     private final String name;
     private final String phone;
 }
