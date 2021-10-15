@@ -1,10 +1,10 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.netology.data.DataGenerator;
 
 
@@ -19,6 +19,16 @@ public class CardDeliveryTest {
 
     private final String date = generateDate(3);
     private final String anotherDate = generateDate(4);
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
 
 
     @BeforeEach
@@ -63,4 +73,4 @@ public class CardDeliveryTest {
                 1500).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + anotherDate));
     }
 
-   }
+}
